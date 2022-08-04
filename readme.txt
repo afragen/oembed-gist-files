@@ -1,12 +1,15 @@
 # Gist oEmbed
 
-* Description:       oEmbed Gist or files within Gists.
-* Version:           0.7.0
-* Author:            Andy Fragen, Colin Stewart
-* License:           MIT
-* Requires at least: 5.9
-* Requires PHP:      7.1
-* Stable tag:        0.7.0
+Plugin URI:        https://github.com/afragen/gist-oembed
+Description:       oEmbed Gist or files within Gists.
+Tags:              gist, oembed, embed
+Version:           0.7.0
+Contributors:      afragen, costdev
+License:           MIT
+Requires at least: 5.9
+Requires PHP:      7.1
+Tested up to:      6.0
+Stable tag:        0.7.0
 
 oEmbed Gist or files within Gists.
 

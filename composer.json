@@ -1,0 +1,36 @@
+{
+    "name": "afragen/gist-oembed",
+    "description": "oEmbed Gist or files within Gists.",
+    "type": "wordpress-plugin",
+    "keywords": [
+        "gist",
+        "oembed"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andy Fragen",
+            "email": "andy@thefragens.com",
+            "homepage": "https://thefragens.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Colin Stewart",
+            "role": "Developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/afragen/git-oembed"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/afragen/git-oembed/issues",
+        "source": "https://github.com/afragen/git-oembed"
+    },
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.1"
+    }
+}

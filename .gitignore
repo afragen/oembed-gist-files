@@ -1,0 +1,5 @@
+.DS_Store
+.idea
+.svnignore
+.wordpress-org/*.pxd
+/vendor

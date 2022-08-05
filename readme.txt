@@ -9,7 +9,7 @@ License:           MIT
 Requires at least: 5.9
 Requires PHP:      7.1
 Tested up to:      6.0
-Stable tag:        0.7.0
+Stable tag:        0.7.1
 
 oEmbed Gist or files within Gists.
 
@@ -19,6 +19,9 @@ Use an Embed block and enter the URL for the Gist or the URL for a specific file
 No shortcodes.
 
 ## Changelog
+
+0.7.1 / 2022-08-05
+* dot org release
 
 #### 0.7.0 /2022-08-04
 * initial release

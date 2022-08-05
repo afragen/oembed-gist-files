@@ -1,7 +1,6 @@
 # oEmbed Gists and Files
 
 * Description:       oEmbed Gist or files within Gists.
-* Version:           0.7.0
 * Author:            Andy Fragen, Colin Stewart
 * License:           MIT
 * Requires at least: 5.9

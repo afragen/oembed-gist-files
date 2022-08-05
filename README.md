@@ -1,4 +1,4 @@
-# Gist oEmbed
+# oEmbed Gists and Files
 
 * Description:       oEmbed Gist or files within Gists.
 * Version:           0.7.0

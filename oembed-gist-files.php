@@ -1,18 +1,18 @@
 <?php
 /**
- * Gist oEmbed.
+ * oEmbed Gists and Files.
  *
- * @package Fragen\Gist_OEmbed
+ * @package Fragen\OEmbed_Gist
  *
- * Plugin Name:       Gist oEmbed
- * Plugin URI:        https://github.com/afragen/gist-oembed
+ * Plugin Name:       oEmbed Gists and Files
+ * Plugin URI:        https://github.com/afragen/oembed-gist-files
  * Description:       oEmbed Gist or files within Gists.
  * Version:           0.7.0
  * Author:            Andy Fragen, Colin Stewart
  * License:           MIT
  * Requires at least: 5.9
  * Requires PHP:      7.1
- * GitHub Plugin URI: https://github.com/afragen/gist-oembed
+ * GitHub Plugin URI: https://github.com/afragen/oembed-gist-files
  * Primary Branch:    main
  */
 
@@ -25,12 +25,12 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-wp_embed_register_handler( 'gist', '#^https?://gist.github.com/.*#i', [ new Gist_OEmbed(), 'gist_result' ] );
+wp_embed_register_handler( 'gist', '#^https?://gist.github.com/.*#i', [ new OEmbed_Gist(), 'gist_result' ] );
 
 /**
  * Class Gist_OEmbed.
  */
-class Gist_OEmbed {
+class OEmbed_Gist {
 
 	/**
 	 * Render Gist for embed.

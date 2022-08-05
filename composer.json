@@ -1,5 +1,5 @@
 {
-    "name": "afragen/gist-oembed",
+    "name": "afragen/oembed-gist-files",
     "description": "oEmbed Gist or files within Gists.",
     "type": "wordpress-plugin",
     "keywords": [
@@ -22,12 +22,12 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/afragen/git-oembed"
+            "url": "https://github.com/afragen/oembed-gist-files"
         }
     ],
     "support": {
-        "issues": "https://github.com/afragen/git-oembed/issues",
-        "source": "https://github.com/afragen/git-oembed"
+        "issues": "https://github.com/afragen/oembed-gist-files/issues",
+        "source": "https://github.com/afragen/oembed-gist-files"
     },
     "prefer-stable": true,
     "require": {

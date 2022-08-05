@@ -1,6 +1,6 @@
-# Gist oEmbed
+# oEmbed Gists and Files
 
-Plugin URI:        https://github.com/afragen/gist-oembed
+Plugin URI:        https://github.com/afragen/oembed-gist-files
 Description:       oEmbed Gist or files within Gists.
 Tags:              gist, oembed, embed
 Version:           0.7.0

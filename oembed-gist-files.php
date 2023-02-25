@@ -25,14 +25,18 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-$oembed_gist = new OEmbed_Gist();
-wp_embed_register_handler( 'gist', '#^https?://gist.github.com/.*#i', [ $oembed_gist, 'gist_result' ] );
-add_filter( 'pre_oembed_result', [ $oembed_gist, 'pre_oembed_result' ], 10, 2 );
-
 /**
  * Class Gist_OEmbed.
  */
 class OEmbed_Gist {
+
+	/**
+	 * Constructor.
+	 */
+	public function __construct() {
+		wp_embed_register_handler( 'gist', '#^https?://gist.github.com/.*#i', [ $this, 'gist_result' ] );
+		add_filter( 'pre_oembed_result', [ $this, 'pre_oembed_result' ], 10, 2 );
+	}
 
 	/**
 	 * Render Gist for embed.
@@ -82,3 +86,5 @@ class OEmbed_Gist {
 		return $html;
 	}
 }
+
+new OEmbed_Gist();

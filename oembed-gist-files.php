@@ -40,29 +40,25 @@ class OEmbed_Gist {
 	 * @return string
 	 */
 	public function gist_result( $url ) {
-		$url      = strtolower( $url[0] );
-		$fragment = '';
-		$parsed   = explode( '#', $url );
+		$url = strtolower( $url[0] );
 
-		// Parse elements of URL for specific file within Gist.
-		if ( isset( $parsed[1] ) ) {
+		// Adjust the URL if it contains a specific file within the Gist.
+		$fragment = strpos( $url, '#' );
+		if ( false !== $fragment ) {
 			if ( str_contains( $url, '.js#' ) ) {
 				$url = str_replace( '.js#file-', '.js?file=', $url );
 			} else {
 				$url = str_replace( '#file-', '.js?file=', $url );
 			}
+			
+			$last_hyphen = strrpos( $url, '-' );
 
-			$url      = $parsed[0];
-			$fragment = str_replace( 'file-', '', $parsed[1] );
-			$file_arr = explode( '-', $fragment );
-			$ext      = array_pop( $file_arr );
-			$fragment = implode( '-', $file_arr ) . '.' . $ext;
-			$fragment = '?file=' . $fragment;
+			if ( false !== $last_hyphen && $last_hyphen > $fragment ) {
+				$url[ $last_hyphen ] = '.';
+			}
 		} elseif ( ! str_ends_with( $url, '.js' ) ) {
 			$url .= '.js';
 		}
-
-		$url = ! empty( $fragment ) ? $url . $fragment : $url;
 
 		// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript
 		return '<script src="' . esc_url( $url ) . '"></script>';

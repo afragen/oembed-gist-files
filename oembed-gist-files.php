@@ -25,7 +25,9 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-wp_embed_register_handler( 'gist', '#^https?://gist.github.com/.*#i', [ new OEmbed_Gist(), 'gist_result' ] );
+$oembed_gist = new OEmbed_Gist();
+wp_embed_register_handler( 'gist', '#^https?://gist.github.com/.*#i', [ $oembed_gist, 'gist_result' ] );
+add_filter( 'pre_oembed_result', [ $oembed_gist, 'pre_oembed_result' ], 10, 2 );
 
 /**
  * Class Gist_OEmbed.

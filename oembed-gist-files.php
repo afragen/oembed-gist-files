@@ -63,4 +63,20 @@ class OEmbed_Gist {
 		// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript
 		return '<script src="' . esc_url( $url ) . '"></script>';
 	}
+
+	/**
+	 * Returns the HTML for a Gist.
+	 *
+	 * @param string|null $html The existing HTML, or null.
+	 * @param string      $url  The URL.
+	 *
+	 * @return string|null The Gist HTML, the existing HTML, or null.
+	 */
+	public function pre_oembed_result( $html, $url ) {
+		if ( preg_match( '#^https?://gist.github.com/.*#i', $url, $match ) ) {
+			return $this->gist_result( $match );
+		}
+
+		return $html;
+	}
 }

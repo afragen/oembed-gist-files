@@ -40,21 +40,25 @@ class OEmbed_Gist {
 	 * @return string
 	 */
 	public function gist_result( $url ) {
-		$url      = $url[0];
+		$url      = strtolower( $url[0] );
 		$fragment = '';
 		$parsed   = explode( '#', $url );
 
 		// Parse elements of URL for specific file within Gist.
 		if ( isset( $parsed[1] ) ) {
+			if ( str_contains( $url, '.js#' ) ) {
+				$url = str_replace( '.js#file-', '.js?file=', $url );
+			} else {
+				$url = str_replace( '#file-', '.js?file=', $url );
+			}
+
 			$url      = $parsed[0];
 			$fragment = str_replace( 'file-', '', $parsed[1] );
 			$file_arr = explode( '-', $fragment );
 			$ext      = array_pop( $file_arr );
 			$fragment = implode( '-', $file_arr ) . '.' . $ext;
 			$fragment = '?file=' . $fragment;
-		}
-
-		if ( ! str_ends_with( strtolower( $url ), '.js' ) ) {
+		} elseif ( ! str_ends_with( $url, '.js' ) ) {
 			$url .= '.js';
 		}
 

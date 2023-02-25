@@ -25,12 +25,25 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-wp_embed_register_handler( 'gist', '#^https?://gist.github.com/.*#i', [ new OEmbed_Gist(), 'gist_result' ] );
-
 /**
  * Class Gist_OEmbed.
  */
 class OEmbed_Gist {
+
+	/**
+	 * The Gist regex to match.
+	 *
+	 * @var string
+	 */
+	private $regex = '#^https?://gist.github.com/.*#i';
+
+	/**
+	 * Constructor.
+	 */
+	public function __construct() {
+		wp_embed_register_handler( 'gist', $this->regex, [ $this, 'gist_result' ] );
+		add_filter( 'pre_oembed_result', [ $this, 'pre_oembed_result' ], 10, 2 );
+	}
 
 	/**
 	 * Render Gist for embed.
@@ -63,4 +76,22 @@ class OEmbed_Gist {
 		// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript
 		return '<script src="' . esc_url( $url ) . '"></script>';
 	}
+
+	/**
+	 * Returns the HTML for a Gist.
+	 *
+	 * @param string|null $html The existing HTML, or null.
+	 * @param string      $url  The URL.
+	 *
+	 * @return string|null The Gist HTML, the existing HTML, or null.
+	 */
+	public function pre_oembed_result( $html, $url ) {
+		if ( preg_match( $this->regex, $url, $match ) ) {
+			return $this->gist_result( $match );
+		}
+
+		return $html;
+	}
 }
+
+new OEmbed_Gist();

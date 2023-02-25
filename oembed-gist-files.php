@@ -31,10 +31,17 @@ if ( ! defined( 'WPINC' ) ) {
 class OEmbed_Gist {
 
 	/**
+	 * The Gist regex to match.
+	 *
+	 * @var string
+	 */
+	private $regex = '#^https?://gist.github.com/.*#i';
+
+	/**
 	 * Constructor.
 	 */
 	public function __construct() {
-		wp_embed_register_handler( 'gist', '#^https?://gist.github.com/.*#i', [ $this, 'gist_result' ] );
+		wp_embed_register_handler( 'gist', $this->regex, [ $this, 'gist_result' ] );
 		add_filter( 'pre_oembed_result', [ $this, 'pre_oembed_result' ], 10, 2 );
 	}
 
@@ -79,7 +86,7 @@ class OEmbed_Gist {
 	 * @return string|null The Gist HTML, the existing HTML, or null.
 	 */
 	public function pre_oembed_result( $html, $url ) {
-		if ( preg_match( '#^https?://gist.github.com/.*#i', $url, $match ) ) {
+		if ( preg_match( $this->regex, $url, $match ) ) {
 			return $this->gist_result( $match );
 		}
 

@@ -7,7 +7,7 @@
  * Plugin Name:       oEmbed Gists and Files
  * Plugin URI:        https://github.com/afragen/oembed-gist-files
  * Description:       oEmbed Gist or files within Gists.
- * Version:           0.8.0
+ * Version:           1.0.0
  * Author:            Andy Fragen, Colin Stewart
  * License:           MIT
  * Requires at least: 5.9

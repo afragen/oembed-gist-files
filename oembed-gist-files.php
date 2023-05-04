@@ -53,21 +53,16 @@ class OEmbed_Gist {
 	 * @return string
 	 */
 	public function gist_result( $url ) {
-		$url = strtolower( $url[0] );
+		$original_url = $url[0];
+		$url          = strtolower( $original_url );
 
 		// Adjust the URL if it contains a specific file within the Gist.
 		$fragment = strpos( $url, '#' );
 		if ( false !== $fragment ) {
-			if ( str_contains( $url, '.js#' ) ) {
-				$url = str_replace( '.js#file-', '.js?file=', $url );
-			} else {
-				$url = str_replace( '#file-', '.js?file=', $url );
-			}
+			$url = $this->get_file_script( substr( $url, 0, $fragment ), substr( $url, $fragment + 1 ) );
 
-			$last_hyphen = strrpos( $url, '-' );
-
-			if ( false !== $last_hyphen && $last_hyphen > $fragment ) {
-				$url[ $last_hyphen ] = '.';
+			if ( '' === $url ) {
+				$url = $original_url[0];
 			}
 		} elseif ( ! str_ends_with( $url, '.js' ) ) {
 			$url .= '.js';
@@ -75,6 +70,35 @@ class OEmbed_Gist {
 
 		// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript
 		return '<script src="' . esc_url( $url ) . '"></script>';
+	}
+
+	/**
+	 * Gets the file's script URL.
+	 *
+	 * @param string $root The root URL for the Gist.
+	 * @param string $file The file slug.
+	 *
+	 * @return string The file's script URL, or an empty string.
+	 */
+	private function get_file_script( $root, $file ) {
+		$response = wp_remote_get( $root . '.js' );
+		$body     = wp_remote_retrieve_body( $response );
+		$links    = explode( '<a href=\"', $body );
+		$count    = count( $links );
+
+		for ( $i = 0; $i < $count; ++$i ) {
+			if ( ! str_contains( $links[ $i ], $root . '#' . $file ) ) {
+				continue;
+			}
+
+			$links[ $i - 1 ] = substr( $links[ $i - 1 ], 0, strpos( $links[ $i - 1 ], '\"' ) );
+			$links[ $i - 1 ] = explode( '/', $links[ $i - 1 ] );
+			$filename        = end( $links[ $i - 1 ] );
+
+			return $root . '.js?file=' . rawurlencode( htmlspecialchars_decode( $filename ) );
+		}
+
+		return '';
 	}
 
 	/**

@@ -8,7 +8,7 @@ License:           MIT
 Requires at least: 5.9
 Requires PHP:      7.1
 Tested up to:      6.2
-Stable tag:        1.0.0
+Stable tag:        1.0.1
 
 oEmbed Gist or files within Gists.
 
@@ -20,6 +20,9 @@ Support for `wp_oembed_get()`.
 No shortcodes.
 
 ## Changelog
+
+#### 1.0.1 / 2023-05-11
+* hotfix for `$url` fragment being empty
 
 #### 1.0.0 / 2023-05-03
 * update to capture file name of Gist, fixes edge cases for file names without extensions

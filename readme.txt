@@ -7,7 +7,7 @@ Contributors:      afragen, costdev
 License:           MIT
 Requires at least: 5.9
 Requires PHP:      7.1
-Tested up to:      6.6
+Tested up to:      6.7
 Stable tag:        1.0.2
 
 oEmbed Gist or files within Gists.

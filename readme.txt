@@ -7,8 +7,8 @@ Contributors:      afragen, costdev
 License:           MIT
 Requires at least: 5.9
 Requires PHP:      7.1
-Tested up to:      6.7
-Stable tag:        1.0.2
+Tested up to:      7.1
+Stable tag:        1.0.3
 
 oEmbed Gist or files within Gists.
 
@@ -20,6 +20,10 @@ Support for `wp_oembed_get()`.
 No shortcodes.
 
 ## Changelog
+
+#### 1.0.3 / 2026-08-13
+* update GitHub Actions
+* update tested to
 
 #### 1.0.2 / 2024-07-11
 * update tested to
